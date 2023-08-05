@@ -1,0 +1,33 @@
+name: Deployment exercise 1
+on: push
+jobs:
+  lint:
+      runs-on: macos-13
+      steps:
+        - name: Get code
+          uses: actions/checkout@v3
+        - name: Install dependencies
+          run: npm ci
+        - name: Test
+          run: npm run lint  ## To run te lint command that comes in the code 
+  test:  
+    runs-on: macos-13
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run test   ## it could be only "npm test" command that is also acceptable, and this command runs the test script i the code
+  deploy:
+    runs-on: macos-13
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build code
+        run: npm run build 
+      - name: Deployment code
+        run: echo "Deploying...."  ##just adding a dummy message
+      
