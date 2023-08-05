@@ -11,6 +11,7 @@ jobs:
         - name: Test
           run: npm run lint  ## To run te lint command that comes in the code 
   test:  
+    needs: lint
     runs-on: macos-13
     steps:
       - name: Get code
@@ -20,6 +21,7 @@ jobs:
       - name: Lint
         run: npm run test   ## it could be only "npm test" command that is also acceptable, and this command runs the test script i the code
   deploy:
+    needs: test
     runs-on: macos-13
     steps:
       - name: Get code
